@@ -1,11 +1,15 @@
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import StateLocalGovt from "./StateLocalGovt"
+import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@/components/ui/button"
 
 const PersonalInformationForm = () => {
   return (
     <div className="mx-auto bg-white shadow-md md:p-8 p-4 w-full rounded-md">
-      <p className="text-2xl font-bold text-secondary">Person Information</p>
+      <p className="text-2xl font-bold text-secondary my-auto">Person Information <span className="text-red-500 my-auto">*</span></p>
+      <p className="text-xs text-gray-500 font-medium">Please note that all field are required, save your information before proceeding to the next phase.</p>
       <div className="flex gap-5 flex-col">
         <div className="flex flex-col gap-5 mt-5">
           <p className="text-lg font-semibold">Choose Your Age Category</p>
@@ -43,6 +47,31 @@ const PersonalInformationForm = () => {
             <Label htmlFor="dob">Date of Birth</Label>
             <Input type="date" id="dob" placeholder="e.g example@youremail.com" />
           </div>
+        </div>
+        <StateLocalGovt />
+        <div className="flex flex-col gap-5 md:flex-row">
+          <div className="grid w-full max-w-sm items-center gap-1.5">
+            <Label htmlFor="instagram">Instagram</Label>
+            <Input type="text" id="instagram" placeholder="e.g pett.putty" />
+          </div>
+          <div className="grid w-full max-w-sm items-center gap-1.5">
+            <Label htmlFor="tiktok">TikTok</Label>
+            <Input type="text" id="tiktok" placeholder="e.g petty_putty" />
+          </div>
+        </div>
+        <div className="flex flex-col gap-5 w-full">
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="madrasah">Madrasah Attended</Label>
+            <Textarea id="madrasah" placeholder="e.g Ansaru-deen" />
+          </div>
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="address">Home Address</Label>
+            <Textarea id="address" placeholder="e.g Tanke, Oke-odo" />
+          </div>
+        </div>
+        <div className="w-full justify-end flex gap-5 mt-5">
+          <Button variant="ghost" className="font-semibold cursor-pointer">Clear form</Button>
+          <Button variant="primary" className="cursor-pointer font-semibold">Save and continue</Button>
         </div>
       </div>
     </div>
