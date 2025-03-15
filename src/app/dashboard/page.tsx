@@ -1,29 +1,39 @@
-import { LayoutDashboardIcon, User, Users } from "lucide-react";
+import { Book, Users } from "lucide-react";
 import DashboardInfo from "./_components/DashboardInfo";
+import { formatNumber } from "@/lib/services";
+import surahData from "@/data/surah-data";
 
 const Dashboard = () => {
   return (
     <div>
       <div className="flex gap-3">
         <DashboardInfo
-          icon={LayoutDashboardIcon}
-          title="Dashboard"
-          content={<p className="text-slate-500">Welcome admin, You are in control of the application</p>}
+          icon={Users}
+          title="Total Applications"
+          content={<div className="flex flex-col gap-2">
+            <p className="text-primary-foreground font-bold text-2xl">{formatNumber(3000)}</p>
+            <p className="text-slate-500 text-sm">All Application since the competition begins</p>
+          </div>}
         />
         <DashboardInfo
           icon={Users}
-          title="Applications"
+          title="Current Applications"
           content={
-            <div className="flex flex-col gap-3">
-              <p className="text-primary-foreground font-bold text-2xl">30</p>
-              <p className="text-slate-500">View all applications</p>
+            <div className="flex flex-col gap-2">
+              <p className="text-primary-foreground font-bold text-2xl">{formatNumber(300)}</p>
+              <p className="text-slate-500 text-sm">View all applications</p>
             </div>
           }
         />
         <DashboardInfo
-          icon={User}
-          title="Profile"
-          content={<p className="text-slate-500">View and update profile</p>}
+          icon={Book}
+          title="Surahs"
+          content={
+            <div className="flex flex-col gap-3">
+              <p className="text-primary-foreground font-bold text-2xl">{formatNumber(surahData.length)}</p>
+              <p className="text-slate-500 text-sm">Total surah Currently available for the competition</p>
+            </div>
+          }
         />
       </div>
     </div>
