@@ -1,9 +1,83 @@
+"use client";
+
 import { Book, Users } from "lucide-react";
 import DashboardInfo from "./_components/DashboardInfo";
 import { formatNumber } from "@/lib/services";
 import surahData from "@/data/surah-data";
+import applicants from "@/data/user-data";
+import { useEffect, useState } from "react";
+import PieChart from "./_components/PieChart";
+import { ApplicationStatus } from "@/types/user";
+
+export interface ChartDataType {
+  labels: string[];
+  datasets: {
+      label: string;
+      data: number[];
+      backgroundColor: string[];
+      hoverOffset: number;
+  }[];
+}
 
 const Dashboard = () => {
+  const [chartData, setChartData] = useState<ChartDataType>({
+    labels: ["Approved Applications", "Pending Applications", "Denied Applications"],
+    datasets: [
+      {
+        label: "value",
+        data: [0, 0, 0],
+        backgroundColor: [
+          "green",
+          "yellow",
+          "red",
+        ],
+        hoverOffset: 12, // Expands on hover
+      },
+    ],
+  });
+
+  useEffect(() => {
+    setChartData({
+      ...chartData,
+      datasets: [
+        {
+          label: "Value",
+          data: [applicants.filter(applicant => applicant.status === ApplicationStatus.APPROVED).length, applicants.filter(applicant => applicant.status === ApplicationStatus.PENDING).length, applicants.filter(applicant => applicant.status === ApplicationStatus.DENIED).length],
+          backgroundColor: [
+            "green",
+            "yellow",
+            "red",
+          ],
+          hoverOffset: 12,
+        }
+      ]
+    });
+  }, []);
+
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: "right",
+        labels: {
+          font: {
+            size: 14,
+          },
+          padding: 20,
+        },
+      },
+      tooltip: {
+        callbacks: {
+          label: function (tooltipItem: any) {
+            let value = tooltipItem.raw;
+            return `Value: ${value}`;
+          },
+        },
+      },
+    },
+  };
+  
   return (
     <div>
       <div className="flex gap-3">
@@ -20,8 +94,8 @@ const Dashboard = () => {
           title="Current Applications"
           content={
             <div className="flex flex-col gap-2">
-              <p className="text-primary-foreground font-bold text-2xl">{formatNumber(300)}</p>
-              <p className="text-slate-500 text-sm">View all applications</p>
+              <p className="text-primary-foreground font-bold text-2xl">{formatNumber(applicants.length)}</p>
+              <p className="text-slate-500 text-sm">Applications for the current cohort</p>
             </div>
           }
         />
@@ -35,6 +109,12 @@ const Dashboard = () => {
             </div>
           }
         />
+      </div>
+      <div className="flex flex-col gap-3">
+        <p>Students Data</p>
+        <div style={{ width: "50%", height: "400px", margin: "auto" }}>
+          <PieChart data={chartData} options={chartOptions} />
+        </div>
       </div>
     </div>
   )

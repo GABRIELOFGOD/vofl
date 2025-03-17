@@ -14,6 +14,18 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { toast } from "sonner";
+import { formattedTime } from "@/lib/services";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 export type UserType = {
   name: string;
@@ -70,6 +82,27 @@ export const columns: ColumnDef<SurahTypes>[] = [
     },
   },
   {
+    accessorKey: "createdAt",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="cursor-pointer"
+        >
+          Posted On
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      const sural = row.original;
+      return <div>
+        <p>{formattedTime(sural.createdAt)}</p>
+      </div>
+    }
+  },
+  {
     id: "actions",
     cell: ({ row }) => {
       const surah = row.original
@@ -78,8 +111,13 @@ export const columns: ColumnDef<SurahTypes>[] = [
         navigator.clipboard.writeText(surah.surah)
         toast.info("Surah copied to clipboard");
       }
+
+      const deleteSurah = () => {
+        
+      }
  
       return (
+            <AlertDialog>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0 cursor-pointer">
@@ -96,9 +134,22 @@ export const columns: ColumnDef<SurahTypes>[] = [
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Edit Surah</DropdownMenuItem>
-            <DropdownMenuItem>Delete Surah</DropdownMenuItem>
+            <DropdownMenuItem><AlertDialogTrigger>Delete Surah</AlertDialogTrigger></DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+        <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you sure you want to delete this Surah?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete the Surah from the server.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction>Continue</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+        </AlertDialog>
       )
     },
   },
