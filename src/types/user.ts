@@ -6,6 +6,10 @@ export enum ApplicationStatus {
   DENIED = "denied",
 }
 
+export enum ApplicantCategory {
+
+}
+
 export interface ApplicantDataType {
   id: number;
   fname: string;
@@ -13,6 +17,7 @@ export interface ApplicantDataType {
   email: string;
   dob: string;
   state: string;
+  category: "8-12" | "13-18" | "18-25";
   lga: string;
   instagram?: string;
   tiktok?: string;

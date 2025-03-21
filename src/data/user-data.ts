@@ -17,7 +17,8 @@ const applicants: ApplicantDataType[] = [
     createdAt: "2024-03-10T12:00:00Z",
     updatedAt: "2024-03-12T15:00:00Z",
     hasUploadedVideo: true,
-    status: ApplicationStatus.APPROVED
+    status: ApplicationStatus.APPROVED,
+    category: "13-18"
   },
   {
     id: 2,
@@ -33,7 +34,8 @@ const applicants: ApplicantDataType[] = [
     surah: { id: 5, surah: "Al-Ma'idah", category: "13-18", title: "The Table Spread", createdAt: "2024-03-15T10:40:00Z", user: { name: "Omar", email: "omar@example.com", role: "superAdmin" }},
     createdAt: "2024-03-11T09:30:00Z",
     hasUploadedVideo: true,
-    status: ApplicationStatus.APPROVED
+    status: ApplicationStatus.APPROVED,
+    category: "18-25"
   },
   {
     id: 3,
@@ -50,7 +52,8 @@ const applicants: ApplicantDataType[] = [
     createdAt: "2024-03-10T16:45:00Z",
     updatedAt: "2024-03-13T10:00:00Z",
     hasUploadedVideo: true,
-    status: ApplicationStatus.APPROVED
+    status: ApplicationStatus.APPROVED,
+    category: "13-18"
   },
   {
     id: 4,
@@ -66,7 +69,8 @@ const applicants: ApplicantDataType[] = [
     surah: { id: 14, surah: "Ibrahim", category: "13-18", title: "Abraham", createdAt: "2024-03-15T12:10:00Z", user: { name: "Mariam", email: "mariam@example.com", role: "superAdmin" }},
     createdAt: "2024-03-12T08:15:00Z",
     hasUploadedVideo: false,
-    status: ApplicationStatus.PENDING
+    status: ApplicationStatus.PENDING,
+    category: "13-18"
   },
   {
     id: 5,
@@ -82,7 +86,8 @@ const applicants: ApplicantDataType[] = [
     createdAt: "2024-03-14T11:20:00Z",
     updatedAt: "2024-03-15T14:30:00Z",
     hasUploadedVideo: true,
-    status: ApplicationStatus.APPROVED
+    status: ApplicationStatus.APPROVED,
+    category: "18-25"
   },
   {
     id: 6,
@@ -99,7 +104,8 @@ const applicants: ApplicantDataType[] = [
     surah: { id: 22, surah: "Al-Hajj", category: "8-12", title: "The Pilgrimage", createdAt: "2024-03-15T13:30:00Z", user: { name: "Sami", email: "sami@example.com", role: "admin" }},
     createdAt: "2024-03-14T14:00:00Z",
     hasUploadedVideo: false,
-    status: ApplicationStatus.DENIED
+    status: ApplicationStatus.DENIED,
+    category: "13-18"
   },
   {
     id: 7,
@@ -115,7 +121,8 @@ const applicants: ApplicantDataType[] = [
     createdAt: "2024-03-15T10:30:00Z",
     updatedAt: "2024-03-16T12:00:00Z",
     hasUploadedVideo: true,
-    status: ApplicationStatus.APPROVED
+    status: ApplicationStatus.APPROVED,
+    category: "8-12"
   },
   {
     id: 8,
@@ -130,7 +137,8 @@ const applicants: ApplicantDataType[] = [
     surah: { id: 25, surah: "Al-Furqan", category: "8-12", title: "The Criterion", createdAt: "2024-03-15T14:00:00Z", user: { name: "Rahma", email: "rahma@example.com", role: "admin" }},
     createdAt: "2024-03-15T15:15:00Z",
     hasUploadedVideo: true,
-    status: ApplicationStatus.APPROVED
+    status: ApplicationStatus.APPROVED,
+    category: "13-18"
   },
   {
     id: 9,
@@ -146,7 +154,8 @@ const applicants: ApplicantDataType[] = [
     createdAt: "2024-03-16T08:20:00Z",
     updatedAt: "2024-03-17T10:30:00Z",
     hasUploadedVideo: true,
-    status: ApplicationStatus.APPROVED
+    status: ApplicationStatus.APPROVED,
+    category: "13-18"
   },
   {
     id: 10,
@@ -162,7 +171,8 @@ const applicants: ApplicantDataType[] = [
     surah: { id: 30, surah: "Ar-Rum", category: "8-12", title: "The Romans", createdAt: "2024-03-15T15:00:00Z", user: { name: "Suleiman", email: "suleiman@example.com", role: "admin" }},
     createdAt: "2024-03-16T12:40:00Z",
     hasUploadedVideo: false,
-    status: ApplicationStatus.PENDING
+    status: ApplicationStatus.PENDING,
+    category: "18-25"
   },
   {
     id: 11,
@@ -178,7 +188,8 @@ const applicants: ApplicantDataType[] = [
     surah: { id: 32, surah: "As-Sajdah", category: "13-18", title: "The Prostration", createdAt: "2024-03-15T15:20:00Z", user: { name: "Nasir", email: "nasir@example.com", role: "superAdmin" }},
     createdAt: "2024-03-17T09:15:00Z",
     hasUploadedVideo: true,
-    status: ApplicationStatus.APPROVED
+    status: ApplicationStatus.APPROVED,
+    category: "13-18"
   },
   {
     id: 12,
@@ -194,7 +205,8 @@ const applicants: ApplicantDataType[] = [
     createdAt: "2024-03-17T10:30:00Z",
     updatedAt: "2024-03-18T13:00:00Z",
     hasUploadedVideo: true,
-    status: ApplicationStatus.APPROVED
+    status: ApplicationStatus.APPROVED,
+    category: "8-12"
   },
   {
     id: 13,
@@ -210,7 +222,8 @@ const applicants: ApplicantDataType[] = [
     surah: { id: 37, surah: "As-Saffat", category: "13-18", title: "Those Who Set The Ranks", createdAt: "2024-03-15T16:10:00Z", user: { name: "Hassan", email: "hassan@example.com", role: "admin" }},
     createdAt: "2024-03-17T14:50:00Z",
     hasUploadedVideo: true,
-    status: ApplicationStatus.APPROVED
+    status: ApplicationStatus.APPROVED,
+    category: "18-25"
   },
   {
     id: 14,
@@ -226,7 +239,8 @@ const applicants: ApplicantDataType[] = [
     createdAt: "2024-03-18T07:20:00Z",
     updatedAt: "2024-03-19T09:00:00Z",
     hasUploadedVideo: true,
-    status: ApplicationStatus.PENDING
+    status: ApplicationStatus.PENDING,
+    category: "8-12"
   },
   {
     id: 15,
@@ -241,7 +255,8 @@ const applicants: ApplicantDataType[] = [
     surah: { id: 42, surah: "Ash-Shura", category: "8-12", title: "The Consultation", createdAt: "2024-03-15T16:50:00Z", user: { name: "Kabir", email: "kabir@example.com", role: "developer" }},
     createdAt: "2024-03-18T11:10:00Z",
     hasUploadedVideo: true,
-    status: ApplicationStatus.APPROVED
+    status: ApplicationStatus.APPROVED,
+    category: "18-25"
   },
   {
     id: 16,
@@ -257,7 +272,8 @@ const applicants: ApplicantDataType[] = [
     surah: { id: 45, surah: "Al-Jathiyah", category: "13-18", title: "The Kneeling", createdAt: "2024-03-15T17:20:00Z", user: { name: "Hakeem", email: "hakeem@example.com", role: "admin" }},
     createdAt: "2024-03-18T13:40:00Z",
     hasUploadedVideo: true,
-    status: ApplicationStatus.APPROVED
+    status: ApplicationStatus.APPROVED,
+    category: "13-18"
   },
   {
     id: 17,
@@ -273,7 +289,8 @@ const applicants: ApplicantDataType[] = [
     createdAt: "2024-03-19T09:10:00Z",
     updatedAt: "2024-03-20T12:00:00Z",
     hasUploadedVideo: true,
-    status: ApplicationStatus.PENDING
+    status: ApplicationStatus.PENDING,
+    category: "13-18"
   },
   {
     id: 18,
@@ -288,7 +305,8 @@ const applicants: ApplicantDataType[] = [
     surah: { id: 50, surah: "Qaf", category: "18-25", title: "The Letter Qaf", createdAt: "2024-03-15T18:00:00Z", user: { name: "Saad", email: "saad@example.com", role: "developer" }},
     createdAt: "2024-03-19T15:30:00Z",
     hasUploadedVideo: false,
-    status: ApplicationStatus.DENIED
+    status: ApplicationStatus.DENIED,
+    category: "8-12"
   }
 ];
 
