@@ -1,15 +1,49 @@
-import surahData from "@/data/surah-data";
-import { SurahTypes, columns } from "./columns"
+"use client";
+
+import { columns, SurahTypes } from "./columns"
 import { DataTable } from "./data-table"
 import { Button } from "@/components/ui/button";
- 
-async function getData(): Promise<SurahTypes[]> {
-  // Fetch data from your API here.  
-  return surahData;
-}
+import { useEffect, useState } from "react";
+import CreateSurah from "./_components/CreateSurah";
+import useSurah from "@/hooks/useSurah";
+import { toast } from "sonner";
+import Spinner from "react-spinkit";
+import { useRouter } from "next/navigation";
 
-const Surah = async () => {
-  const data = await getData();
+
+const Surah = () => {
+  const [createSurah, setCreateSurah] = useState<boolean>(false);
+  const [data, setData] = useState<SurahTypes[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const router = useRouter();
+
+  const { getSurah } = useSurah();
+
+  const getSurahData = async () => {
+    setIsLoading(true);
+    try {
+      const surah = await getSurah();
+      setData(surah.surahs);
+    } catch (error: any) {
+      if (error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        console.log(error);
+        toast.error("Something went wrong while trying to upload surah");
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getSurahData();
+  }, [createSurah]);
+
+  const closeModalSurah = () => {
+    setCreateSurah(false);
+    router.refresh();
+  }
 
   return (
     <div className="py-10 px-3 md:px-10">
@@ -19,15 +53,27 @@ const Surah = async () => {
           <p className="text-secondary-foreground">Available Surah for the competition</p>
         </div>
         <div className="my-auto">
-          <Button variant="primary">
+          <Button
+            variant="primary"
+            onClick={() => setCreateSurah(true)}
+          >
             New Surah
           </Button>
         </div>
       </div>
-      <div>
+      {isLoading && <div className="w-full h-[205px] flex items-center justify-center gap-3">
+        <Spinner color="black" name="circle" />
+        Loading
+      </div>}
+      {!isLoading && <div>
         <DataTable columns={columns} data={data} />
-      </div>
+      </div>}
+      {createSurah && (
+        <div className="fixed top-0 left-0 bg-white/80 h-full w-full flex justify-center items-center flex-col p-3">
+          <CreateSurah close={closeModalSurah} />
+        </div>
+      )}
     </div>
   )
 }
-export default Surah
+export default Surah;

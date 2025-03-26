@@ -26,27 +26,34 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import { User } from "@/types/user";
 
-export type UserType = {
-  name: string;
-  email: string;
-  role: "admin" | "superAdmin" | "developer";
-};
+// export type UserType = {
+//   name: string;
+//   email: string;
+//   role: "admin" | "superAdmin" | "developer";
+// };
 
 export type SurahTypes = { 
   id: number;
   surah: string;
-  category: "8-12" | "13-18" | "18-25";
+  category: "8-12" | "13-18" | "19-25";
   title: string;
   createdAt: string;
-  user: UserType;
+  user: User;
 };
 
+export interface Surah {
+  description: string;
+  category: "8-12" | "13-18" | "19-25";
+  title: string;
+}
+
 export const columns: ColumnDef<SurahTypes>[] = [
-  {
-    accessorKey: "surah",
-    header: "Surah",
-  },
+  // {
+  //   accessorKey: "surah",
+  //   header: "Surah",
+  // },
   {
     accessorKey: "title",
     header: "Title",
@@ -67,7 +74,7 @@ export const columns: ColumnDef<SurahTypes>[] = [
     },
   },
   {
-    accessorKey: "user.name",
+    accessorKey: "user.fname",
     header: ({ column }) => {
       return (
         <Button

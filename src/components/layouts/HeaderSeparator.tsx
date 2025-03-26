@@ -6,7 +6,7 @@ import Header from "./Header";
 const HeaderSeparator = () => {
   const path = usePathname();
 
-  const adminPaths = path.startsWith("/dashboard");
+  const adminPaths = path.startsWith("/dashboard") || path === "/login";
   
   return (
     <div>

@@ -29,3 +29,10 @@ export interface ApplicantDataType {
   hasUploadedVideo: boolean;
   status: ApplicationStatus;
 }
+
+export interface User {
+  fname: string;
+  lname: string;
+  email: string;
+  password: string;
+}
