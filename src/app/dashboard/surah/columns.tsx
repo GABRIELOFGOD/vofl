@@ -153,7 +153,7 @@ export const columns: ColumnDef<SurahTypes>[] = [
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction>Continue</AlertDialogAction>
+            <AlertDialogAction onClick={deleteSurah}>Continue</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
         </AlertDialog>

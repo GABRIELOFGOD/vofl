@@ -76,8 +76,8 @@ export const columns: ColumnDef<ApplicantDataType>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => {
-      const applicant = row.original
+    cell: () => {
+      // const applicant = row.original
 
       const approveApplication = () => {
         toast.success("Application Approved");

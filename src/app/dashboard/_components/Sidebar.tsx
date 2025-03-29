@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, Book, LayoutDashboard, Settings, User, Users } from "lucide-react";
+import { Book, LayoutDashboard, User, Users } from "lucide-react";
 import Image from "next/image";
 import SidebarButtons from "./SidebarButtons";
 

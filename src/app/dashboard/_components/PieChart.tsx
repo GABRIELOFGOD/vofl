@@ -5,14 +5,16 @@ import {
   ArcElement,
   Tooltip,
   Legend,
+  ChartData,
+  ChartOptions,
 } from "chart.js";
 
 // Register required chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = ({ data, options }: {
-  data: any;
-  options: any;
+  data: ChartData<"pie">;
+  options: ChartOptions<"pie">;
 }) => {
   return <Pie data={data} options={options} />;
 };

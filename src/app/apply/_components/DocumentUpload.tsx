@@ -66,9 +66,10 @@
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { BASEURL } from "@/lib/utils";
-import { Image } from "lucide-react";
+import Image from "next/image";
 import { useState, ChangeEvent } from "react";
 import { toast } from "sonner";
+import { Image as ImageIcon } from "lucide-react";
 
 interface UploadState {
   file: File | null;
@@ -142,7 +143,7 @@ const DocumentUpload = () => {
       if (response.message) {
         toast.success(response.message);
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error("ERROR UPLOADING", error);
       toast.error(`Error uploading ${field}`);
     } finally {
@@ -180,14 +181,15 @@ const DocumentUpload = () => {
               className="h-[200px] w-full border-dashed flex items-center justify-center cursor-pointer border-2 border-gray-500 rounded-md text-gray-400 mx-auto flex-col"
             >
               {uploads[field].preview ? (
-                <img
+                <Image
                   src={uploads[field].preview}
                   alt={field}
                   className="h-full w-full object-cover rounded-md"
+                  fill
                 />
               ) : (
                 <>
-                  <Image size={50} />
+                  <ImageIcon size={50} />
                   <p className="text-center font-semibold">Upload {field.replace(/([A-Z])/g, " $1")}</p>
                 </>
               )}
