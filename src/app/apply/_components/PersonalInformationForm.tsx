@@ -74,21 +74,10 @@ const PersonalInformationForm = () => {
       const response = await startApplication(basicData);
       localStorage.setItem("applicationId", response.applicationId);
       toast.success(response.message);
-    } catch (error: unknown) {
-  
-      if (error instanceof Error) {
-        toast.error(error.message);
-      } else if (
-        typeof error === "object" &&
-        error !== null &&
-        "response" in error &&
-        typeof (error as any).response === "object" &&
-        "data" in (error as any).response &&
-        typeof (error as any).response.data === "object" &&
-        "message" in (error as any).response.data
-      ) {
-        // Handle API error responses
-        toast.error((error as any).response.data.message);
+    } catch (error: any) {
+      console.log("LOGIN ERROR", error);
+      if (error.response.data.message) {
+        toast.error(error.response.data.message);
       } else {
         toast.error("Something went wrong");
       }
