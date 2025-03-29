@@ -1,10 +1,10 @@
 import { columns } from "./columns"
-import applicants from "@/data/user-data"
+// import applicants from "@/data/user-data"
 import { ApplicantDataType } from "@/types/user"
 import { DataTable } from "./data-table";
 
 async function getData(): Promise<ApplicantDataType[]> {
-  return applicants;
+  return [];
 }
 
 const Applications = async () => {
