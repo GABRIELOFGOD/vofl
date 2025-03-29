@@ -180,7 +180,7 @@ const Dashboard = () => {
       tooltip: {
         callbacks: {
           label: function (tooltipItem: TooltipItem<"pie">) {
-            let valueVa = tooltipItem.raw;
+            const valueVa = tooltipItem.raw;
             return `Value: ${valueVa}`;
           },
         },
