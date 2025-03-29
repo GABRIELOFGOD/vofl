@@ -6,7 +6,6 @@ import axios from "axios"
 const useSurah = () => {
   const postSurah = async (surah: Surah) => {
     const token = getToken();
-    console.log("Token", token);
     try {
       const request = await axios.post(`${BASEURL}/surah`, surah, {
         headers: {

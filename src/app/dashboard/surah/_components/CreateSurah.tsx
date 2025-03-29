@@ -32,6 +32,7 @@ const CreateSurah = ({close}:{close: () => void}) => {
       close();
       // router.refresh();
     } catch (error: any) {
+      console.log(error);
       if (error.response.data.message) {
         toast.error(error.response.data.message);
       } else {
