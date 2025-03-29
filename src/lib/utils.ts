@@ -6,4 +6,4 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 // export const BASEURL = "http://localhost:5000/api/v1";
-export const BASEURL = "http://localhost:5000/api/v1";
+export const BASEURL = "https://versesoflight.org/api/api/v1";

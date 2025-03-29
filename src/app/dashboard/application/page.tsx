@@ -16,4 +16,4 @@ const Applications = async () => {
     </div>
   )
 }
-export default Applications
+export default Applications;
