@@ -126,7 +126,7 @@
 import { Book, Users } from "lucide-react";
 import DashboardInfo from "./_components/DashboardInfo";
 import { formatNumber } from "@/lib/services";
-import surahData from "@/data/surah-data";
+// import surahData from "@/data/surah-data";
 import applicants from "@/data/user-data";
 import { useEffect, useState } from "react";
 import PieChart from "./_components/PieChart";
@@ -225,7 +225,8 @@ const Dashboard = () => {
           content={
             <div className="flex flex-col gap-3">
               <p className="text-primary-foreground font-bold text-2xl">
-                {formatNumber(surahData.length)}
+                {/* {formatNumber(surahData.length)} */}
+                {formatNumber(1929)}
               </p>
               <p className="text-slate-500 text-sm">
                 Total Surahs currently available for the competition
