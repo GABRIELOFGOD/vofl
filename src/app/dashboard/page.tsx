@@ -127,10 +127,10 @@ import { Book, Users } from "lucide-react";
 import DashboardInfo from "./_components/DashboardInfo";
 import { formatNumber } from "@/lib/services";
 // import surahData from "@/data/surah-data";
-import applicants from "@/data/user-data";
+// import applicants from "@/data/user-data";
 import { useEffect, useState } from "react";
 import PieChart from "./_components/PieChart";
-import { ApplicationStatus } from "@/types/user";
+// import { ApplicationStatus } from "@/types/user";
 import { ChartData, ChartOptions, TooltipItem } from "chart.js";
 
 const Dashboard = () => {
@@ -153,9 +153,10 @@ const Dashboard = () => {
         {
           label: "Applications",
           data: [
-            applicants.filter(applicant => applicant.status === ApplicationStatus.APPROVED).length,
-            applicants.filter(applicant => applicant.status === ApplicationStatus.PENDING).length,
-            applicants.filter(applicant => applicant.status === ApplicationStatus.DENIED).length
+            30,10,11
+            // applicants.filter(applicant => applicant.status === ApplicationStatus.APPROVED).length,
+            // applicants.filter(applicant => applicant.status === ApplicationStatus.PENDING).length,
+            // applicants.filter(applicant => applicant.status === ApplicationStatus.DENIED).length
           ],
           backgroundColor: ["green", "yellow", "red"],
           hoverOffset: 12,
@@ -211,7 +212,8 @@ const Dashboard = () => {
           content={
             <div className="flex flex-col gap-2">
               <p className="text-primary-foreground font-bold text-2xl">
-                {formatNumber(applicants.length)}
+                {/* {formatNumber(applicants.length)} */}
+                {formatNumber(34561)}
               </p>
               <p className="text-slate-500 text-sm">
                 Applications for the current cohort
