@@ -1,9 +1,30 @@
+"use client";
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { ApplicantDataType } from "@/types/user";
 import { Label } from "@radix-ui/react-label"
 import { Video } from "lucide-react"
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import DocumentUpload from "../apply/_components/DocumentUpload";
 
 const Continue = () => {
+  const [applicationId, setApplicationId] = useState<string>("");
+  const [applicant, setApplicant] = useState<ApplicantDataType | null>(null);
+  
+  const values = useSearchParams();
+  const query = values.get("applicationId");
+
+  useEffect(() => {
+    if (query !== null) {
+      setApplicationId(query)
+    } else {
+      const localData = localStorage.getItem("applicationId");
+      if (localData) setApplicationId(localData);
+    }
+  }, [query]);
+  
   return (
     <div className="w-full justify-center items-center flex flex-col gap-10 py-10 px-3">
       <div className="w-full justify-center items-center flex flex-col gap-10 md:w-[750px]">
@@ -17,10 +38,16 @@ const Continue = () => {
             <p className="text-xs font-medium text-gray-400">Enter the Application ID generated for you during your application</p>
           </div>
           <div className="flex gap-3">
-            <Input type="text" placeholder="Enter Application ID" />
+            <Input
+              type="text"
+              placeholder="Enter Application ID"
+              value={applicationId}
+              onChange={(e) => setApplicationId(e.target.value)}
+            />
             <Button variant="primary" className="font-semibold">Continue</Button>
           </div>
         </div>
+        <DocumentUpload />
         <div className="mx-auto bg-white shadow-md md:p-8 p-4 w-full rounded-md flex flex-col gap-5">
           <div>
             <p className="font-semibold text-lg">Upload video</p>

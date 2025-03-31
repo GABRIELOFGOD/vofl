@@ -178,7 +178,7 @@ const DocumentUpload = () => {
             />
             <Label
               htmlFor={field}
-              className="h-[200px] w-full border-dashed flex items-center justify-center cursor-pointer border-2 border-gray-500 rounded-md text-gray-400 mx-auto flex-col"
+              className="h-[200px] w-full relative border-dashed flex items-center justify-center cursor-pointer border-2 border-gray-500 rounded-md text-gray-400 mx-auto flex-col"
             >
               {uploads[field].preview ? (
                 <Image

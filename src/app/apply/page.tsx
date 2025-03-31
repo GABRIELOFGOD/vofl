@@ -10,7 +10,7 @@ const Apply = () => {
           <p className="text-secondary-foreground">Fill in all the Information appropriately.</p>
         </div>
         <PersonalInformationForm />
-        <DocumentUpload />
+        {/* <DocumentUpload /> */}
       </div>
     </div>
   )
