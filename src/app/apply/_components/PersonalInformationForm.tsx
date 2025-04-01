@@ -193,12 +193,16 @@ import { ApplicationStart } from "@/types/application";
 import useApplication from "@/hooks/useApplication";
 import { toast } from "sonner";
 import Spinner from "react-spinkit";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const PersonalInformationForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<Record<string, boolean>>({});
   const [checkApplicationLoading, setCheckApplicationLoading] = useState<boolean>(false);
   const [foundData, setFoundData] = useState<boolean>(false);
+
+  const router = useRouter();
 
   const [basicData, setBasicData] = useState<ApplicationStart>({
     address: "",
@@ -244,6 +248,7 @@ const PersonalInformationForm = () => {
       const response = await startApplication(basicData);
       localStorage.setItem("applicationId", response.applicationId);
       toast.success(response.message);
+      router.push(`/continue?applicationId=${response.applicationId}`)
     } catch (error: any) {
       console.error("LOGIN ERROR", error);
       toast.error(error.response?.data?.message || "Something went wrong.");
@@ -269,12 +274,11 @@ const PersonalInformationForm = () => {
     }
   }
 
-  // TODO: Implement alert for continue application
-
+  const localData = localStorage.getItem("applicationId");
+  
   useEffect(() => {
-    const localData = localStorage.getItem("applicationId");
     if (localData) isContinue()
-  }, [foundData]);
+  }, []);
 
   return (
     <div className="mx-auto bg-white shadow-md md:p-8 p-4 w-full rounded-md">
@@ -371,11 +375,31 @@ const PersonalInformationForm = () => {
             )}
           </Button>
         </div>
+        <p>Are you done with this phase? <Link className="text-primary font-semibold" href={`/continue`}>Continue from here</Link></p>
       </form>
       {checkApplicationLoading && <div className="bg-white/90 fixed top-0 left-0 w-full h-full flex justify-center items-center gap-3 font-bold text-sm">
          <Spinner color="black" name="circle" />
          Loading prevoius data
        </div>}
+       {foundData && (
+        <div className="w-full h-full bg-black/70 fixed top-0 left-0 flex justify-center items-center p-3">
+          <div className="border rounded-md border-gray-800 bg-white p-4 flex flex-col gap-4 w-full md:w-[500px] h-fit shadow-sm text-slate-900">
+            <p className="text-2xl font-bold">Data found</p>
+            <p>We found that you've been registering for the competition before, do you want to continue with the registration?</p>
+            <div className="flex gap-3 justify-end">
+              <Button
+                variant="ghost"
+                className="border border-slate-900 cursor-pointer"
+                onClick={() => setFoundData(false)}
+              >Cancel</Button>
+              <Button
+                variant="primary"
+                onClick={() => router.push(`/continue?applicationId=${localData}`)}
+              >Continue</Button>
+            </div>
+          </div>
+        </div>
+       )}
     </div>
   );
 };

@@ -28,6 +28,9 @@ export interface ApplicantDataType {
   updatedAt?: string;
   hasUploadedVideo: boolean;
   status: ApplicationStatus;
+  birthCert: string;
+  passport: string;
+  hafizCert: string;
 }
 
 export interface User {

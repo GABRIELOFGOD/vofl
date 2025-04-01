@@ -8,17 +8,42 @@ import { Video } from "lucide-react"
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import DocumentUpload from "../apply/_components/DocumentUpload";
+import { toast } from "sonner";
+import useApplication from "@/hooks/useApplication";
+import Spinner from "react-spinkit";
 
 const Continue = () => {
   const [applicationId, setApplicationId] = useState<string>("");
   const [applicant, setApplicant] = useState<ApplicantDataType | null>(null);
+  const [checkApplicationLoading, setCheckApplicationLoading] = useState<boolean>(false);
   
   const values = useSearchParams();
   const query = values.get("applicationId");
 
+  const { continueApplication } = useApplication();
+
+  const isContinue = async () => {
+    setCheckApplicationLoading(true);
+    try {
+      const response = await continueApplication();
+      if (response.application) setApplicant(response.application as ApplicantDataType);
+      console.log(response.application);
+    } catch (error: any) {
+      if (error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        console.log(error);
+        toast.error("Something went wrong while trying to upload surah");
+      }
+    } finally {
+      setCheckApplicationLoading(false);
+    }
+  }
+
   useEffect(() => {
     if (query !== null) {
       setApplicationId(query)
+      isContinue();
     } else {
       const localData = localStorage.getItem("applicationId");
       if (localData) setApplicationId(localData);
@@ -47,8 +72,13 @@ const Continue = () => {
             <Button variant="primary" className="font-semibold">Continue</Button>
           </div>
         </div>
-        <DocumentUpload />
-        <div className="mx-auto bg-white shadow-md md:p-8 p-4 w-full rounded-md flex flex-col gap-5">
+        {applicant &&
+        <DocumentUpload
+          passport={applicant.passport}
+          birth={applicant.birthCert}
+          hafiz={applicant.hafizCert}
+        />}
+        {applicant && applicant.hafizCert && applicant.birthCert && applicant.passport && <div className="mx-auto bg-white shadow-md md:p-8 p-4 w-full rounded-md flex flex-col gap-5">
           <div>
             <p className="font-semibold text-lg">Upload video</p>
             <p className="text-xs font-medium text-gray-400">Upload the video of your Surah recitation</p>
@@ -61,9 +91,12 @@ const Continue = () => {
           <div className="w-full justify-end flex gap-5 mt-5">
             <Button variant="primary" className="cursor-pointer font-semibold">Complete Application</Button>
           </div>
-        </div>
+        </div>}
       </div>
-
+      {checkApplicationLoading && <div className="bg-white/90 fixed top-0 left-0 w-full h-full flex justify-center items-center gap-3 font-bold text-sm">
+        <Spinner color="black" name="circle" />
+        Wait while we fetch your data ...
+      </div>}
     </div>
   )
 }
