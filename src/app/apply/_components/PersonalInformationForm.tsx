@@ -20,6 +20,7 @@ const PersonalInformationForm = () => {
   const [errors, setErrors] = useState<Record<string, boolean>>({});
   const [checkApplicationLoading, setCheckApplicationLoading] = useState<boolean>(false);
   const [foundData, setFoundData] = useState<boolean>(false);
+  const [localData, setLocalData] = useState<string | null>(null);
 
   const router = useRouter();
 
@@ -93,11 +94,17 @@ const PersonalInformationForm = () => {
     }
   }
 
-  const localData = localStorage.getItem("applicationId");
+  // const localData = localStorage.getItem("applicationId");
   
   useEffect(() => {
-    const localDataGet = localStorage.getItem("applicationId");
-    if (localDataGet) isContinue()
+    if (typeof window !== "undefined") {
+      const storedData = localStorage.getItem("applicationId");
+      setLocalData(storedData);
+      
+      if (storedData) {
+        isContinue();
+      }
+    }
   }, []);
 
   return (
