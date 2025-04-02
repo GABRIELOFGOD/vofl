@@ -4,6 +4,7 @@ import "./globals.css";
 import HeaderSeparator from "@/components/layouts/HeaderSeparator";
 import { Toaster } from "@/components/ui/sonner";
 import { GlobalProvider } from "@/context/GlobalContext";
+import FooterSeparator from "@/components/layouts/FooterSeparator";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
           <HeaderSeparator />
           {children}
           <Toaster />
+          <FooterSeparator />
         </GlobalProvider>
       </body>
     </html>

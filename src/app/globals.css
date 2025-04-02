@@ -46,7 +46,7 @@
 }
 
 :root {
-  --background: #F6F4F1;
+  --background: #f8f8f8;
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -124,4 +124,8 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.addit{
+  background: url("/image_fx_.jpg");
 }

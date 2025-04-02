@@ -1,61 +1,34 @@
-// "use client";
+"use client";
 
-// import { Button } from "@/components/ui/button";
-// import Image from "next/image";
-
-// const Hero = () => {
-//   return (
-//     <div className="flex gap-10 flex-col md:flex-row justify-between h-[80vh] w-full">
-//       <div className="my-auto md:flex-[3] flex flex-col gap-3">
-//         <p className="text-4xl md:text-6xl font-bold text-primary-foreground">Verse of Light</p>
-//         <p className="text-xl pt-5 text-gray-700 font-semibold">The Largest Quarnic competition in Nigeria.</p>
-//         <div className="flex gap-5">
-//           <Button
-//             variant="secondary"
-//             size="lg"
-//             className="text-black cursor-pointer font-semibold"
-//           >Apply Now</Button>
-//         </div>
-//       </div>
-//       <div className="relative w-[250px] h-full md:flex-[2]"> {/* Define a width & height */}
-//         <Image
-//           src="/boy.png"
-//           alt="Boy-image"
-//           fill
-//           className="object-cover"
-//         />
-//       </div>
-//       <div className="flex-1 my-auto flex flex-col gap-3">
-//         <p className="font-bold text-primary">How to Apply</p>
-//         <div className="flex gap-5">
-//           <p className="text-gray-400 font-semibold">1.</p>
-//           <p className=" font-semibold">Apply</p>
-//         </div>
-//         <div className="flex gap-5">
-//           <p className="text-gray-400 font-semibold">2.</p>
-//           <p className=" font-semibold">Upload video</p>
-//         </div>
-//         <div className="flex gap-5">
-//           <p className="text-gray-400 font-semibold">3.</p>
-//           <p className=" font-semibold">Join challenge</p>
-//         </div>
-//         <div className="flex gap-5">
-//           <p className="text-gray-400 font-semibold">4.</p>
-//           <p className=" font-semibold">Win</p>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Hero;
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const Hero = () => {
   return (
-    <div className="flex flex-col w-full md:h-screen">
-      
+    <div className="relative w-full h-fit py-52 md:h-screen flex flex-col justify-center items-center bg-gradient-to-b from- bg-black/10 to-black/90">
+      <Image
+        src="/image_fx_.jpg"
+        alt="bg-image"
+        fill
+        className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
+      />
+      <div className="flex flex-col gap-5 w-full md:w-[700px] justify-center items-center text-center p-6 rounded-lg">
+        <h1 className="text-4xl md:text-5xl font-bold text-white">
+          <span className="text-primary">VERSES OF LIGHT</span> QURANIC COMPETITION
+        </h1>
+        <p className="text-white text-lg md:text-xl">
+          Join thousands of talented participants as they showcase their memorization, recitation, and Tajweed skills while deepening their connection with the Holy Quran.
+        </p>
+        <Button
+          variant="primary"
+          size="lg"
+          className="font-semibold"
+        >
+          Join Competition
+        </Button>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default Hero;
