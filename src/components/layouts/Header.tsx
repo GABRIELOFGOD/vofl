@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Menu } from "lucide-react";
 import {
   Sheet,
@@ -27,7 +27,7 @@ export const socials = [
 const Header = () => {
   const [activeLink, setActiveLink] = useState("/");
   const router = useRouter();
-  const pathname = usePathname();
+  // const pathname = usePathname();
 
   const headerLinks = [
     { label: "Home", href: "/" },

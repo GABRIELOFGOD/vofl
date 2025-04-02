@@ -1,4 +1,3 @@
-import { Sriracha } from "next/font/google";
 import Hero from "./_components/Hero";
 import { steps, whyCompetition } from "@/data/step";
 import ApplicationCard from "@/components/layouts/home/ApplicationCard";
