@@ -6,7 +6,7 @@ import { ApplicantDataType } from "@/types/user";
 import { Label } from "@radix-ui/react-label"
 import { Video } from "lucide-react"
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import DocumentUpload from "../apply/_components/DocumentUpload";
 import { toast } from "sonner";
 import useApplication from "@/hooks/useApplication";
@@ -45,12 +45,15 @@ const Continue = () => {
       setApplicationId(query)
       isContinue();
     } else {
-      const localData = localStorage.getItem("applicationId");
-      if (localData) setApplicationId(localData);
+      if (typeof window !== undefined) {
+        const localData = localStorage.getItem("applicationId");
+        if (localData) setApplicationId(localData);
+      }
     }
   }, [query]);
   
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <div className="w-full justify-center items-center flex flex-col gap-10 py-10 px-3">
       <div className="w-full justify-center items-center flex flex-col gap-10 md:w-[750px]">
         <div className="flex flex-col gap-2 w-full">
@@ -98,6 +101,7 @@ const Continue = () => {
         Wait while we fetch your data ...
       </div>}
     </div>
+    </Suspense>
   )
 }
 export default Continue
