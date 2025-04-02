@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import { ApplicantDataType } from "@/types/user";
 import { Label } from "@radix-ui/react-label"
 import { Video } from "lucide-react"
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import DocumentUpload from "../apply/_components/DocumentUpload";
 import { toast } from "sonner";
@@ -16,9 +16,11 @@ const Continue = () => {
   const [applicationId, setApplicationId] = useState<string>("");
   const [applicant, setApplicant] = useState<ApplicantDataType | null>(null);
   const [checkApplicationLoading, setCheckApplicationLoading] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string | null>(null);
+  const router = useRouter();
   
   const values = useSearchParams();
-  const query = values.get("applicationId");
+  // const query = values.get("applicationId");
 
   const { continueApplication } = useApplication();
 
@@ -41,16 +43,23 @@ const Continue = () => {
   }
 
   useEffect(() => {
+    const query = values.get("applicationId");
     if (query !== null) {
-      setApplicationId(query)
+      setSearchQuery(query);
+      setApplicationId(query);
       isContinue();
     } else {
-      if (typeof window !== undefined) {
+      if (typeof window !== "undefined") {
         const localData = localStorage.getItem("applicationId");
         if (localData) setApplicationId(localData);
       }
     }
-  }, [query]);
+  }, [values]);
+
+  const getApplication = () => {
+    router.push(`/continue?applicationId=${applicationId}`);
+    if (searchQuery !== null) return;
+  }
   
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -72,7 +81,7 @@ const Continue = () => {
               value={applicationId}
               onChange={(e) => setApplicationId(e.target.value)}
             />
-            <Button variant="primary" className="font-semibold">Continue</Button>
+            <Button onClick={getApplication} variant="primary" className="font-semibold">Continue</Button>
           </div>
         </div>
         {applicant &&
