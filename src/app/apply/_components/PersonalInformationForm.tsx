@@ -385,7 +385,7 @@ const PersonalInformationForm = () => {
         <div className="w-full h-full bg-black/70 fixed top-0 left-0 flex justify-center items-center p-3">
           <div className="border rounded-md border-gray-800 bg-white p-4 flex flex-col gap-4 w-full md:w-[500px] h-fit shadow-sm text-slate-900">
             <p className="text-2xl font-bold">Data found</p>
-            <p>We found that you've been registering for the competition before, do you want to continue with the registration?</p>
+            <p>We found that you&apos;ve been registering for the competition before, do you want to continue with the registration?</p>
             <div className="flex gap-3 justify-end">
               <Button
                 variant="ghost"

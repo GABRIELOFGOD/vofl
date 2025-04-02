@@ -1,4 +1,3 @@
-import DocumentUpload from "./_components/DocumentUpload"
 import PersonalInformationForm from "./_components/PersonalInformationForm"
 
 const Apply = () => {
