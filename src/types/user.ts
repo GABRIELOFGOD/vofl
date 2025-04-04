@@ -26,11 +26,17 @@ export interface ApplicantDataType {
   surah: SurahTypes;
   createdAt: string;
   updatedAt?: string;
-  hasUploadedVideo: boolean;
+  appVideo: string;
   status: ApplicationStatus;
   birthCert: string;
   passport: string;
   hafizCert: string;
+}
+
+export enum UserRole {
+  USER="user",
+  ADMIN="admin",
+  DEVELOPER="developer"
 }
 
 export interface User {
@@ -38,4 +44,7 @@ export interface User {
   lname: string;
   email: string;
   password: string;
+  photo: string;
+  id: number;
+  role: UserRole;
 }
