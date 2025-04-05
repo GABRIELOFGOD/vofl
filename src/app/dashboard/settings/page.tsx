@@ -1,8 +1,16 @@
 "use client";
 
+import { useGlobalContext } from "@/context/GlobalContext";
 import SettingsCard from "./_components/SettingsCard"
+import useSettings from "@/hooks/useSettings";
+import { useState } from "react";
+import CalendarModel from "./_components/CalendarModel";
 
 const Settings = () => {
+  const [showDate, setShowCalendar] = useState<boolean>(false);
+  const { settings } = useGlobalContext();
+  const { toggleSetting } = useSettings();
+  
   return (
     <div className="h-full py-10">
       <div className="mx-auto flex flex-col gap-10 w-full md:w-[750px]">
@@ -18,23 +26,23 @@ const Settings = () => {
             topic="Application"
             description="Swtching this off will close application for users"
             toggle={{
-              value: true,
-              toggleFunction: () => {}
+              value: settings.applicationOpen,
+              toggleFunction: () => toggleSetting("applicationOpen")
             }}
           />
           <SettingsCard
             topic="Application Video"
             description="Switching this off will discontiue uploading of surah recitation video for applicants"
             toggle={{
-              value: false,
-              toggleFunction: () => {}
+              value: settings.allowVideoUpload,
+              toggleFunction: () => toggleSetting("allowVideoUpload")
             }}
           />
           <SettingsCard
             topic="Next Cohort"
             description="Set a calendar date for next cohort"
             edit={{
-              callback: () => {}
+              callback: () => setShowCalendar(true),
             }}
           />
         </div>
@@ -48,8 +56,8 @@ const Settings = () => {
             topic="Admin Registration"
             description="Allow new admin registration"
             toggle={{
-              value: true,
-              toggleFunction: () => {}
+              value: settings.allowAdminRegistration,
+              toggleFunction: () => toggleSetting("allowAdminRegistration")
             }}
           />
           <SettingsCard
@@ -62,6 +70,15 @@ const Settings = () => {
           />
         </div>
       </div>
+      {showDate && (
+        <CalendarModel
+          date={settings.applicationStartDate}
+          setDate={(date) => {
+            // setDate(date);
+            setShowCalendar(false);
+          }}
+        />
+      )}
     </div>
   )
 }
